@@ -4,23 +4,65 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Products</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+    <title>Home Page</title>
 </head>
-<body>
-    <h1>All Products</h1>
-    <form action="/search" method="post">
-    <input type="text" placeholder="Name to search" name="txtName">
-    <input type="submit" value="Search">
-    </form>
-    <ul>
+<header class="header_section">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+            <a class="navbar-brand col-sm" href="/">
+                <span>
+                    <p>BEST TOYS</p>         
+                </span>
+            </a>
+            <br>
+            <a class="navbar-brand" href="/new">
+                <span>
+                    <p>Add product</p>
+                </span>
+            </a>
+            <form action="/search" method="post">
+                <input type="text" placeholder="Name to search" name="txtName" style="background-color: rgb(195, 232, 241); margin-bottom: 10px">
+                <input type="submit" value="Search" style="background-color: rgb(195, 232, 241);">
+            </form>
+        </nav>
+    </div>
+</header>
+<body style="background-color: rgb(52, 169, 223);">
+    <h1 class="title">ALL AVAILABLE PRODUCTS</h1>
+    <div class="product" style="display: block; margin: auto;">
+        <ul>
         {{#each results}}
-            <li>{{name}}
-                <br>
-                <img src="{{picture}}" alt="" width="150" height="100">
-                <a href="/delete?id={{_id}}" onclick="return confirm('are you mad?')">Delete</a>
-                <a href="/edit?id={{_id}}" style="color: orange;">Edit</a>
+            <li>
+                <br />
+                <div class = "box">
+                    <img src="{{picture}}" alt="" width="240" height="240" style="padding-top: 10px;" />
+                    <div class="productContent">
+                        <br>
+                        <span>Product name: {{name}}</span>
+                        <br>
+                        Price:
+                        <span style="color: {{priceColor price}}">${{price}}</span>
+                        <br>
+                        Quantity:
+                        <span style="color: {{quantityColor quantity}}">{{quantity}}</span>
+                        <br>
+                        <span>Category: {{category}}</span>
+                    </div>
+                        <div class="buttons">
+                        <a href="/edit?id={{_id}}" class="btn btn-info">Edit</a>
+                        <a href="/delete?id={{_id}}" onclick="return confirm('Are you sure?')" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
             </li>
         {{/each}}
-    </ul>
+      </ul>
+    </div>
 </body>
 </html>

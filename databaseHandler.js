@@ -9,7 +9,7 @@ async function insertNewProduct(newProduct) {
 }
 async function getDB() {
     let client = await mongoClient.connect(url)
-    let db = client.db("GCH1002")
+    let db = client.db("GCH1003")
     return db
 }
 
@@ -18,10 +18,10 @@ async function getAllProducts() {
     let results = await db.collection("products").find().toArray()
     return results
 }
-async function updateProduct(id, name, price, picUrl) {
+async function updateProduct(id, name, price, quantity, picUrl, category) {
     let db = await getDB()
     await db.collection("products").updateOne({ _id: ObjectId(id) },
-        { $set: { "name": name, "price": price, "picture": picUrl } })
+        { $set: { "name": name, "price": price, "quantity":quantity, "picture": picUrl, "category": category } })
 }
 async function findProductById(id) {
     let db = await getDB()
