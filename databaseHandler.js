@@ -12,7 +12,6 @@ async function getDB() {
     let db = client.db("GCH1003")
     return db
 }
-
 async function getAllProducts() {
     let db = await getDB()
     let results = await db.collection("products").find().toArray()
